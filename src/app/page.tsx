@@ -5,6 +5,8 @@ import Link from "next/link";
 import api from "../services/api";
 import { useRouter } from "next/navigation";
 
+// teste
+
 interface IEquipamentos {
   id: number;
   tipo: string;
