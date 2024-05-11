@@ -16,9 +16,9 @@ interface IEquipamentos {
     status: boolean;
 }
 
-export default function Post() {
+export default function Post() { // Porque Post?
   const params = useParams();
-  const router = useRouter();
+  const router = useRouter(); // variavel n usada
   const { id } = params;
   const [response, setPost] = useState<IEquipamentos | null>(null);
 
