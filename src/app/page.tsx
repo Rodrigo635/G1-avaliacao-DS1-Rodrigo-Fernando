@@ -17,12 +17,12 @@ interface IEquipamentos {
   status: boolean;
 }
 
-async function fetchEquipamentos(): Promise<any> {
+async function fetchEquipamentos(): Promise<any> { // NÃO RETONAR ANY
   const result = await api.get("/equipamentos");
   return result.data;
 }
 
-async function deleteEquipamentos(id: number): Promise<void> {
+async function deleteEquipamentos(id: number): Promise<void> { // NÃO RETONAR ANY
   await api.delete(`/equipamentos/${id}`);
 }
 
@@ -37,13 +37,17 @@ export default function Home() {
     const getEquipamentos = async () => {
       const fetchedEquipamentos = await fetchEquipamentos();
       setEquipamentos(fetchedEquipamentos);
-      setFiltered(fetchedEquipamentos);
+      setFiltered(fetchedEquipamentos); // Isso é necessário? Esta usando mais memória!
       setLoading(false);
     };
     getEquipamentos();
-  }, []);
+  }, []); // validar se deveria ter alguma depêndencia aqui
 
   const handleDelete = async (id: number) => {
+    /*
+    Este método precisa ser refatorado, valida o que ocorre em network e console no navegador ao excluir um segundo equipamento
+    */
+    await
     await deleteEquipamentos(id);
     router.refresh()
     // Atualiza a lista de usuários após a exclusão
